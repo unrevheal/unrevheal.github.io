@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNREVHEAL | Official Website</title>
+    <style>
+        /* BASE CSS (Identico per tutte le pagine per mantenere lo stile) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg-color: #0a0a0a; --text-color: #eeeeee; --accent-color: #ff4500; --card-bg: #141414; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Impact', 'Arial Black', sans-serif; letter-spacing: 1px; line-height: 1.6; }
+        h1, h2, h3 { text-transform: uppercase; color: #fff; }
+        p, li { font-family: 'Arial', sans-serif; color: #b3b3b3; }
+        a { color: var(--accent-color); text-decoration: none; transition: 0.3s; }
+        a:hover { color: #fff; }
+        header { background-color: rgba(10, 10, 10, 0.95); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 2px solid var(--accent-color); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 20px; }
+        .logo { font-size: 1.8rem; font-weight: bold; color: #fff; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { font-size: 1.1rem; text-transform: uppercase; }
+        nav ul li a.active { color: #fff; border-bottom: 2px solid var(--accent-color); }
+        section { padding: 140px 20px 60px 20px; max-width: 1200px; margin: 0 auto; min-height: 80vh; }
+        .section-title { font-size: 2.5rem; margin-bottom: 40px; border-left: 5px solid var(--accent-color); padding-left: 15px; }
+        .btn { background-color: var(--accent-color); color: #fff; padding: 12px 30px; font-size: 1.2rem; text-transform: uppercase; font-weight: bold; border: none; cursor: pointer; box-shadow: 4px 4px 0px #fff; display: inline-block; }
+        .btn:hover { background-color: #fff; color: var(--bg-color); box-shadow: 4px 4px 0px var(--accent-color); }
+        footer { text-align: center; padding: 40px; color: #555; font-size: 0.8rem; font-family: sans-serif; }
+        @media (max-width: 768px) { .nav-container { flex-direction: column; } nav ul { margin-top: 15px; } }
+
+        /* SPECIFICO HERO HOME */
+        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://via.placeholder.com/1920x1080') no-repeat center center/cover; }
+        .hero h1 { font-size: 4rem; margin-bottom: 10px; text-shadow: 3px 3px 0px var(--accent-color); }
+        .hero p { font-size: 1.5rem; margin-bottom: 30px; color: #fff; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">UNREVHEAL</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="tour.html">Tour</a></li>
+                    <li><a href="musica.html">Musica</a></li>
+                    <li><a href="contatti.html">Contatti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section>
+        <div class="hero">
+            <h1>UNREVHEAL</h1>
+            <p>GLACIER out now!</p>
+            <a href="https://open.spotify.com" target="_blank" class="btn">Listen on Spotify</a>
+        </div>
+    </section>
+
+    <footer>&copy; 2026 UNREVHEAL. DIY OR DIE.</footer>
+</body>
+</html>
