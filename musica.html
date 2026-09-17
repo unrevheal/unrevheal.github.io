@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Musica | UNREVHEAL</title>
+    <title>Music | UNREVHEAL</title>
     <style>
-        /* CSS Base replicato */
+        /* CSS Base */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root { --bg-color: #0a0a0a; --text-color: #eeeeee; --accent-color: #ff4500; --card-bg: #141414; }
         body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Impact', 'Arial Black', sans-serif; letter-spacing: 1px; line-height: 1.6; }
@@ -24,9 +24,60 @@
         .section-title { font-size: 2.5rem; margin-bottom: 40px; border-left: 5px solid var(--accent-color); padding-left: 15px; }
         footer { text-align: center; padding: 40px; color: #555; font-size: 0.8rem; font-family: sans-serif; }
         
-        /* Specifico Musica */
-        .media-container { background-color: var(--card-bg); padding: 40px; text-align: center; border: 1px dashed #333; }
-        @media (max-width: 768px) { .nav-container { flex-direction: column; } nav ul { margin-top: 15px; } }
+        /* LAYOUT SEZIONE MUSICA */
+        .subsection-title {
+            font-size: 1.8rem;
+            margin: 30px 0 20px 0;
+            color: #fff;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* Bandcamp: 3 colonne uniformi al 100% della larghezza */
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            width: 100%;
+            margin-bottom: 50px;
+        }
+
+        /* Spotify: 2 colonne uniformi al 100% della larghezza */
+        .spotify-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            width: 100%;
+        }
+
+        /* Card contenitore per tutti i player */
+        .player-card {
+            background-color: var(--card-bg);
+            border: 1px solid #222;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            width: 100%;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        /* Responsive per tablet e smartphone */
+        @media (max-width: 900px) {
+            .music-grid, .spotify-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) { 
+            .nav-container { flex-direction: column; } 
+            nav ul { margin-top: 15px; } 
+        }
     </style>
 </head>
 <body>
@@ -37,17 +88,44 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="tour.html">Tour</a></li>
-                    <li><a href="musica.html" class="active">Musica</a></li>
-                    <li><a href="contatti.html">Contatti</a></li>
+                    <li><a href="musica.html" class="active">Music</a></li>
+                    <li><a href="contatti.html">Contacts</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <section>
-        <h2 class="section-title">What's Left of Us - EP</h2>
-        <div class="media-container">
-            <p style="margin-bottom: 20px;"><iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=1575280889/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://unrevheal.bandcamp.com/album/whats-left-of-us">What&#39;s Left of Us by Unrevheal</a></iframe></p>
+
+        <!-- Sezione Bandcamp -->
+        <h3 class="subsection-title">Listen on Bandcamp</h3>
+        <div class="music-grid">
+            <div class="player-card">
+                <iframe style="border: 0; width: 100%; height: 350px;" src="https://bandcamp.com/EmbeddedPlayer/track=2605178560/size=large/bgcol=333333/linkcol=ff4500/minimal=true/transparent=true/" seamless>
+                    <a href="https://unrevheal.bandcamp.com/track/glacier">Glacier by Unrevheal</a>
+                </iframe>
+            </div>
+            <div class="player-card">
+                <iframe style="border: 0; width: 100%; height: 350px;" src="https://bandcamp.com/EmbeddedPlayer/album=1575280889/size=large/bgcol=333333/linkcol=ff4500/minimal=true/transparent=true/" seamless>
+                    <a href="https://unrevheal.bandcamp.com/album/whats-left-of-us">What&#39;s Left of Us by Unrevheal</a>
+                </iframe>
+            </div>
+            <div class="player-card">
+                <iframe style="border: 0; width: 100%; height: 350px;" src="https://bandcamp.com/EmbeddedPlayer/album=3781586356/size=large/bgcol=333333/linkcol=ff4500/minimal=true/transparent=true/" seamless>
+                    <a href="https://unrevheal.bandcamp.com/album/regrets-single">Regrets - Single by Unrevheal</a>
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Sezione Spotify -->
+        <h3 class="subsection-title">Listen on Spotify</h3>
+        <div class="spotify-grid">
+            <div class="player-card">
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/5aAeVw6Tc4giKn6jwY90Je?utm_source=generator&theme=0&si=d6398d44da714269" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+            <div class="player-card">
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/1a5rWnWZxHVEe8K5KI4idj?utm_source=generator&theme=0&si=321cb81dfa884978" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
         </div>
     </section>
 

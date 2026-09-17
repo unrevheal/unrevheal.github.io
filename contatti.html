@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contatti | UNREVHEAL</title>
+    <title>Contacts | UNREVHEAL</title>
     <style>
         /* CSS Base replicato */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,16 +20,36 @@
         nav ul li { margin-left: 20px; }
         nav ul li a { font-size: 1.1rem; text-transform: uppercase; }
         nav ul li a.active { color: #fff; border-bottom: 2px solid var(--accent-color); }
-        section { padding: 140px 20px 60px 20px; max-width: 1200px; margin: 0 auto; min-height: 80vh; }
-        .section-title { font-size: 2.5rem; margin-bottom: 40px; border-left: 5px solid var(--accent-color); padding-left: 15px; }
-        .btn { background-color: var(--accent-color); color: #fff; padding: 12px 30px; font-size: 1.2rem; text-transform: uppercase; font-weight: bold; border: none; cursor: pointer; box-shadow: 4px 4px 0px #fff; display: inline-block; }
-        .btn:hover { background-color: #fff; color: var(--bg-color); box-shadow: 4px 4px 0px var(--accent-color); }
+        section { padding: 140px 20px 40px 20px; max-width: 1200px; margin: 0 auto; min-height: 80vh; }
+        .section-title { font-size: 2.5rem; margin-bottom: 25px; border-left: 5px solid var(--accent-color); padding-left: 15px; }
         footer { text-align: center; padding: 40px; color: #555; font-size: 0.8rem; font-family: sans-serif; }
         
-        /* Specifico Contatti */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .epk-box { background-color: var(--card-bg); padding: 30px; border: 2px solid var(--accent-color); }
-        @media (max-width: 768px) { .nav-container { flex-direction: column; } nav ul { margin-top: 15px; } .contact-grid { grid-template-columns: 1fr; } }
+        /* Layout principale a 2 colonne (Testo a SX, Foto a DX) */
+        .page-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr; /* Dividiamo lo spazio tra testo e foto */
+            gap: 50px;
+            align-items: start;
+        }
+
+        /* Foto intera senza tagli */
+        .band-photo {
+            width: 100%;
+            height: auto; /* Mantiene le proporzioni naturali dell'immagine senza ritagliarla */
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 4px 25px rgba(255, 69, 0, 0.25);
+            display: block;
+        }
+
+        .contacts-block {
+            margin-top: 50px;
+        }
+
+        @media (max-width: 850px) { 
+            .nav-container { flex-direction: column; } 
+            nav ul { margin-top: 15px; } 
+            .page-layout { grid-template-columns: 1fr; gap: 30px; } 
+        }
     </style>
 </head>
 <body>
@@ -40,39 +60,37 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="tour.html">Tour</a></li>
-                    <li><a href="musica.html">Musica</a></li>
-                    <li><a href="contatti.html" class="active">Contatti</a></li>
+                    <li><a href="musica.html">Music</a></li>
+                    <li><a href="contatti.html" class="active">Contacts</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <section>
-        <h2 class="section-title">Contatti & Booking</h2>
-        <div class="contact-grid">
-            <div>
-                <p style="font-size: 1.2rem; margin-bottom: 20px;">Vuoi organizzare un concerto o chiederci informazioni?</p>
-                <p style="margin-bottom: 10px;"><strong>Info:</strong> unrevheal@outlook.com</p>
+        <div class="page-layout">
+            
+            <!-- Colonna Sinistra: Bio + Contacts -->
+            <div class="left-content">
+                <div class="bio-block">
+                    <h2 class="section-title">Bio</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">
+                        Unrevheal are a metal-hardcore band formed in Trieste in 2018. They blend metalcore, hardcore, nu metal and grunge into a powerful, visceral sound driven by fast-paced rhythms, sharp riffs and high-energy vocals. Their music explores human fragility and emotional struggle, transforming rage, pain and vulnerability into an intense, direct and deeply personal experience.
+                    </p>
+                </div>
+
+                <div class="contacts-block">
+                    <h2 class="section-title">Contacts & Booking</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;">Reach out to us here for information or booking!</p>
+                    <p style="font-size: 1.1rem;"><strong>Info:</strong> <a href="mailto:unrevheal@gmail.com">unrevheal@gmail.com</a></p>
+                </div>
             </div>
-            <!--<div class="epk-box">
-                <h3>Electronic Press Kit</h3>
-                <p style="margin: 15px 0; font-family: Arial, sans-serif;">Scarica foto promozionali, loghi e la scheda tecnica per i fonici.</p>
-                <a href="#" class="btn">Scarica EPK (ZIP)</a>-->
+
+            <!-- Colonna Destra: Foto a tutta altezza -->
+            <div class="right-content">
+                <img src="lzo.jpg" alt="UNREVHEAL Live Photo" class="band-photo">
             </div>
-        </div>
-    </section>
-        
-    <section>
-        <h2 class="section-title">Bio</h2>
-        <div class="contact-grid">
-            <div>
-                <p style="margin-bottom: 10px;">Direttamente da Trieste, gli Unrevheal propongono un sound che fonde metalcore, hardcore e influenze nu metal, alternando breakdown pesanti, parti melodiche e un approccio fortemente sperimentale. Dopo l’uscita dell’EP What’s Left of Us, la band si è fatta notare nella scena underground italiana grazie a una proposta intensa e ricca di personalità.</p>
-            </div>
-            <!--<div class="epk-box">
-                <h3>Electronic Press Kit</h3>
-                <p style="margin: 15px 0; font-family: Arial, sans-serif;">Scarica foto promozionali, loghi e la scheda tecnica per i fonici.</p>
-                <a href="#" class="btn">Scarica EPK (ZIP)</a>-->
-            </div>
+
         </div>
     </section>
 
