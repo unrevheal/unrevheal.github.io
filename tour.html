@@ -4,40 +4,193 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tour | UNREVHEAL</title>
-    <!-- Copiamo lo stesso identico CSS di prima per coerenza -->
+    
+    <!-- CSS Leaflet per la Mappa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- CSS Leaflet MarkerCluster (Effetto Spiderfy / Raggiera) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+
     <style>
+        /* CSS Base */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root { --bg-color: #0a0a0a; --text-color: #eeeeee; --accent-color: #ff4500; --card-bg: #141414; }
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Impact', 'Arial Black', sans-serif; letter-spacing: 1px; line-height: 1.6; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Arial Narrow', Arial, sans-serif; letter-spacing: 1px; line-height: 1.6; }
         h1, h2, h3 { text-transform: uppercase; color: #fff; }
         p, li { font-family: 'Arial', sans-serif; color: #b3b3b3; }
         a { color: var(--accent-color); text-decoration: none; transition: 0.3s; }
         a:hover { color: #fff; }
         header { background-color: rgba(10, 10, 10, 0.95); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 2px solid var(--accent-color); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 20px; }
-        .logo { font-size: 1.8rem; font-weight: bold; color: #fff; }
+        /* Stili per il Logo a Immagine */
+        .logo {
+            display: flex;
+            align-items: center;
+            max-height: 50px;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 45px !important;
+            width: auto !important;
+            max-width: 200px;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.2s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
         nav ul { display: flex; list-style: none; }
         nav ul li { margin-left: 20px; }
         nav ul li a { font-size: 1.1rem; text-transform: uppercase; }
         nav ul li a.active { color: #fff; border-bottom: 2px solid var(--accent-color); }
-        section { padding: 140px 20px 60px 20px; max-width: 1200px; margin: 0 auto; min-height: 80vh; }
-        .section-title { font-size: 2.5rem; margin-bottom: 40px; border-left: 5px solid var(--accent-color); padding-left: 15px; }
-        .btn { background-color: var(--accent-color); color: #fff; padding: 8px 20px; font-size: 1rem; text-transform: uppercase; font-weight: bold; border: none; cursor: pointer; box-shadow: 3px 3px 0px #fff; display: inline-block; }
-        .btn:hover { background-color: #fff; color: var(--bg-color); box-shadow: 3px 3px 0px var(--accent-color); }
-        footer { text-align: center; padding: 40px; color: #555; font-size: 0.8rem; font-family: sans-serif; }
         
-        /* Specifico Tour */
-        .tour-list { list-style: none; }
-        .tour-item { background-color: var(--card-bg); padding: 20px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-left: 3px solid #333; }
-        .tour-item:hover { border-left-color: var(--accent-color); background-color: #1a1a1a; }
-        .tour-date { font-weight: bold; color: var(--accent-color); min-width: 120px; }
-        @media (max-width: 768px) { .nav-container { flex-direction: column; } nav ul { margin-top: 15px; } .tour-item { flex-direction: column; text-align: center; gap: 10px; } }
+        section { padding: 140px 20px 60px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 2.5rem; margin-bottom: 30px; border-left: 5px solid var(--accent-color); padding-left: 15px; }
+        
+        /* SEZIONE NEXT EVENTS */
+        .tour-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 60px;
+        }
+
+        .tour-item {
+            background-color: var(--card-bg);
+            border: 1px solid #222;
+            padding: 20px 25px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: border-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .tour-item:hover {
+            border-color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .tour-date {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            min-width: 130px;
+        }
+
+        .tour-item > div:nth-child(2) {
+            flex-grow: 1;
+            padding: 0 20px;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: #fff;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 3px 3px 0px #fff;
+            transition: 0.2s;
+            text-align: center;
+            padding: 5px 15px;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #fff;
+            color: var(--bg-color);
+            box-shadow: 3px 3px 0px var(--accent-color);
+        }
+
+        /* SEZIONE MAPPA PAST SHOWS */
+        .map-section { margin-top: 40px; }
+        #map {
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 4px 25px rgba(255, 69, 0, 0.25);
+            background: #0a0a0a;
+        }
+
+        /* Popup Mappa */
+        .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+            background: #141414 !important;
+            color: #fff !important;
+            border: 1px solid var(--accent-color);
+            font-family: 'Arial', sans-serif;
+            border-radius: 6px;
+        }
+
+        .popup-event {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: 1.15rem;
+            color: #ff4500;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 2px;
+        }
+
+        .popup-venue-city {
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .popup-date {
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-top: 2px;
+            margin-bottom: 8px;
+        }
+
+        .popup-link {
+            margin-top: 8px;
+        }
+
+        /* Personalizzazione Cluster Icon */
+        .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large {
+            background-color: rgba(255, 69, 0, 0.6) !important;
+        }
+        .marker-cluster div {
+            background-color: #141414 !important;
+            color: #fff !important;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            border: 1px solid var(--accent-color);
+        }
+
+        footer { text-align: center; padding: 40px; color: #555; font-size: 0.8rem; font-family: sans-serif; }
+
+        @media (max-width: 768px) { 
+            .nav-container { flex-direction: column; } 
+            nav ul { margin-top: 15px; } 
+            .tour-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .tour-item > div:nth-child(2) { padding: 0; }
+            #map { height: 380px; }
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="nav-container">
-            <div class="logo">UNREVHEAL</div>
+            <div class="logo">
+    <a href="index.html">
+        <img src="logo.png" alt="UNREVHEAL Logo" class="logo-img">
+    </a>
+</div>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -50,30 +203,92 @@
     </header>
 
     <section>
+        <!-- 1. SEZIONE NEXT EVENTS -->
         <h2 class="section-title">Next Events</h2>
         <ul class="tour-list">
             <li class="tour-item">
-                <div class="tour-date">18/07/2026</div>
-                <div><strong>LZO Metal Fest</strong> @ LZO - Conegliano (TV)</div>
-                <a href="https://www.instagram.com/reel/DaVoBMNuseR/?igsh=MTJpbmVraHBwYjdkMQ==" target="_blank" class="btn" style="padding: 5px 15px; font-size: 0.9rem;">Event</a>
+                <div class="tour-date">20/11/2026</div>
+                <div><strong>w/ Bleed the Silence</strong> @ Tune Music Lab (PN)</div>
             </li>
             <li class="tour-item">
-                <div class="tour-date">20/11/2027</div>
-                <div><strong>w/ Bleed the silence</strong> @ Tune Music Lab (PN)</div>
-                <!--<a href="https://www.instagram.com/p/NOME_POST_LOCANDINA/" target="_blank" class="btn" style="padding: 5px 15px; font-size: 0.9rem;">Event</a>-->
+                <div class="tour-date">28/11/2026</div>
+                <div><strong>w/ Ice Sealed Eyes</strong> @ Revolver Club (VE)</div>
+            </li>
+            <li class="tour-item">
+                <div class="tour-date">04/12/2026</div>
+                <div><strong>TBA</strong> </div>
             </li>
             <li class="tour-item">
                 <div class="tour-date">29/01/2027</div>
                 <div><strong>w/ Peter and the Test Tube Babies</strong> @ Argentinos - Ippodromo (TS)</div>
-                <a href="https://www.instagram.com/p/DaH06S3oT7x/?igsh=MWZheHo1cjJnZGc0Yg==" target="_blank" class="btn" style="padding: 5px 15px; font-size: 0.9rem;">Event</a>
-            </li>
-            <li class="tour-item">
-                <div class="tour-date">TBA</div>
-                <div><strong>TBA</strong> @ TBA</div>
-                <!--<a href="https://www.instagram.com/p/NOME_POST_LOCANDINA/" target="_blank" class="btn" style="padding: 5px 15px; font-size: 0.9rem;">Locandina</a>-->
+                <a href="https://www.instagram.com/p/DaH06S3oT7x/?igsh=MWZheHo1cjJnZGc0Yg==" target="_blank" class="btn">Event</a>
             </li>
         </ul>
+
+        <!-- 2. SEZIONE MAPPA PAST SHOWS -->
+        <div class="map-section">
+            <h2 class="section-title">Where We Played</h2>
+            <div id="map"></div>
+        </div>
     </section>
+
     <footer>&copy; 2026 UNREVHEAL. DIY OR DIE.</footer>
+
+    <!-- JS di Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- JS di Leaflet MarkerCluster (Spiderfy) -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+    <script>
+        // 1. Inizializzazione Mappa
+        const map = L.map('map');
+
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+            maxZoom: 16
+        }).addTo(map);
+
+        // 2. Gruppo Cluster per l'effetto Spiderfy / Raggiera
+        const markersCluster = L.markerClusterGroup({
+            spiderfyOnMaxZoom: true,
+            showCoverageOnHover: false,
+            zoomToBoundsOnClick: true,
+            maxClusterRadius: 1,
+            spiderfyDistanceMultiplier: 1.5
+        });
+
+        // 3. Caricamento asincrono dei dati da gigs.json
+        fetch('gigs.json?v=' + Date.now())
+            .then(response => response.json())
+            .then(pastGigs => {
+                pastGigs.forEach(gig => {
+                    let popupText = `
+                        <div class="popup-event">${gig.event}</div>
+                        <div class="popup-venue-city">${gig.venue} - ${gig.city}</div>
+                        <div class="popup-date">Date: ${gig.date}</div>
+                    `;
+
+                    // Mostra il pulsante solo se il campo link non è vuoto
+                    if (gig.link && gig.link.trim() !== "") {
+                        popupText += `
+                            <div class="popup-link">
+                                <a href="${gig.link}" target="_blank" class="btn" style="padding: 3px 10px; font-size: 0.8rem;">Event Link</a>
+                            </div>
+                        `;
+                    }
+
+                    const marker = L.marker(gig.coords).bindPopup(popupText);
+                    markersCluster.addLayer(marker);
+                });
+
+                map.addLayer(markersCluster);
+
+                if (pastGigs.length > 0) {
+                    map.fitBounds(markersCluster.getBounds(), { padding: [50, 50] });
+                }
+            })
+            .catch(error => console.error('Errore nel caricamento del file gigs.json:', error));
+    </script>
 </body>
 </html>

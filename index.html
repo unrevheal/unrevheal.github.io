@@ -9,14 +9,45 @@
         /* BASE CSS (Identico per tutte le pagine per mantenere lo stile) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root { --bg-color: #0a0a0a; --text-color: #eeeeee; --accent-color: #ff4500; --card-bg: #0a0a0a; }
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Impact', 'Arial Black', sans-serif; letter-spacing: 1px; line-height: 1.6; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Arial Narrow', Arial, sans-serif; letter-spacing: 1px; line-height: 1.6; }
         h1, h2, h3 { text-transform: uppercase; color: #fff; }
         p, li { font-family: 'Arial', sans-serif; color: #b3b3b3; }
         a { color: var(--accent-color); text-decoration: none; transition: 0.3s; }
         a:hover { color: #fff; }
         header { background-color: rgba(10, 10, 10, 0.95); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 2px solid var(--accent-color); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 20px; }
-        .logo { font-size: 1.8rem; font-weight: bold; color: #fff; }
+        /* Stili per il Logo a Immagine */
+        .logo {
+            display: flex;
+            align-items: center;
+            max-height: 50px;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 45px !important;
+            width: auto !important;
+            max-width: 200px;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.2s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+        .main-logo-img {
+            height: 80px; /* Cambia questo valore come preferisci (es. 60px, 100px, ecc.) */
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 20px auto; /* Centra il logo e lascia spazio sotto */
+        }
         nav ul { display: flex; list-style: none; }
         nav ul li { margin-left: 20px; }
         nav ul li a { font-size: 1.1rem; text-transform: uppercase; }
@@ -60,7 +91,11 @@
 <body>
     <header>
         <div class="nav-container">
-            <div class="logo">UNREVHEAL</div>
+            <div class="logo">
+    <a href="index.html">
+        <img src="logo.png" alt="UNREVHEAL Logo" class="logo-img">
+    </a>
+</div>
             <nav>
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
@@ -78,7 +113,7 @@
 
             <!-- Copertina del Singolo -->
             <img src="copertina-glacier.jpg" alt="GLACIER Single Cover" class="hero-cover">
-            <h1>UNREVHEAL</h1>
+            <img src="logo.png" alt="logo_main" class="main-logo-img">
             <p>GLACIER out now!</p>
             <!-- Bottoni di Ascolto sotto la copertina -->
             <div class="hero-buttons">
@@ -89,6 +124,6 @@
         </div>
     </section>
 
-    <footer>&copy; 2026 UNREVHEAL. DIY OR DIE.</footer>
+    <footer>&copy; 2026 UNREVHEAL.</footer>
 </body>
 </html>

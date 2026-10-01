@@ -1,0 +1,146 @@
+[
+    {
+        "event": "Trieste HC",
+        "venue": "",
+        "city": "Trieste",
+        "date": "18/03/2023",
+        "coords": [45.6495, 13.7768],
+        "link": "https://www.instagram.com"
+    },
+    {
+        "event": "Spazio Anarchico Libera Officina",
+        "venue": "Libera Officina",
+        "city": "Modena",
+        "date": "01/05/2023",
+        "coords": [44.6582, 10.9126],
+        "link": ""
+    },
+    {
+        "event": "Core Crew Party",
+        "venue": "Tune Music Lab",
+        "city": "Pordenone",
+        "date": "22/12/2023",
+        "coords": [45.9478, 12.6828],
+        "link": ""
+    },
+    {
+        "event": "In Grind We Trst",
+        "venue": "Binario 9",
+        "city": "Trieste",
+        "date": "16/12/2023",
+        "coords": [45.6495, 13.7768],
+        "link": ""
+    },
+    {
+        "event": "Next Core Saturday",
+        "venue": "",
+        "city": "Villa Vicentina (UD)",
+        "date": "27/01/2024",
+        "coords": [45.8155, 13.3951],
+        "link": ""
+    },
+    {
+        "event": "Underground Mania",
+        "venue": "Spazio Scuderia Villa Albrizzi Marini",
+        "city": "San Zenone Degli Ezzelini (TV)",
+        "date": "20/04/2024",
+        "coords": [45.7828, 11.8383],
+        "link": ""
+    },
+    {
+        "event": "Trieste HC",
+        "venue": "Ex Tripcovich",
+        "city": "Trieste",
+        "date": "05/10/2024",
+        "coords": [45.6495, 13.7768],
+        "link": ""
+    },
+    {
+        "event": "Hardcore Reborn",
+        "venue": "Dart Rock",
+        "city": "Trieste",
+        "date": "08/03/2025",
+        "coords": [45.6495, 13.7768],
+        "link": ""
+    },
+    {
+        "event": "Padova HC",
+        "venue": "GrindHouse Club",
+        "city": "Padova",
+        "date": "12/04/2025",
+        "coords": [45.4128, 11.9054],
+        "link": ""
+    },
+    {
+        "event": "NUHC",
+        "venue": "Spazio Esterno",
+        "city": "Cividale del Friuli (UD)",
+        "date": "03/05/2025",
+        "coords": [46.0934, 13.4312],
+        "link": ""
+    },
+    {
+        "event": "Il Grande Baccano",
+        "venue": "Yardie",
+        "city": "Pradamano (UD)",
+        "date": "23/05/2025",
+        "coords": [46.0392, 13.2981],
+        "link": ""
+    },
+    {
+        "event": "Punk is Love",
+        "venue": "Crossroad Recording Studio",
+        "city": "Porcia (PN)",
+        "date": "28/06/2025",
+        "coords": [45.9686, 12.5975],
+        "link": ""
+    },
+    {
+        "event": "Summer Metal Festival",
+        "venue": "",
+        "city": "Lonca di Codroipo (UD)",
+        "date": "10/08/2025",
+        "coords": [45.9691, 13.0039],
+        "link": ""
+    },
+    {
+        "event": "Next Core EP5",
+        "venue": "Circolo Ferriera",
+        "city": "Trieste",
+        "date": "18/10/2025",
+        "coords": [45.6495, 13.7768],
+        "link": ""
+    },
+    {
+        "event": "Next Core EP5",
+        "venue": "Punky Reggae Pub",
+        "city": "Liedolo (TV)",
+        "date": "14/12/2025",
+        "coords": [45.8197, 11.8344],
+        "link": ""
+    },
+    {
+        "event": "Metal Night",
+        "venue": "Yardie",
+        "city": "Pradamano (UD)",
+        "date": "20/03/2026",
+        "coords": [46.0392, 13.2981],
+        "link": ""
+    },
+    {
+        "event": "MIDA Music Festival",
+        "venue": "",
+        "city": "Abbazia Pisani (PD)",
+        "date": "05/06/2026",
+        "coords": [45.6022, 11.8542],
+        "link": ""
+    },
+    {
+        "event": "LZO Metal Fest",
+        "venue": "LZO Brewery",
+        "city": "Conegliano (TV)",
+        "date": "18/07/2026",
+        "coords": [45.8899, 12.2968],
+        "link": ""
+    }
+]
