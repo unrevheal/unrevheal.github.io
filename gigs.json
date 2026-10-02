@@ -1,11 +1,11 @@
 [
     {
         "event": "Trieste HC",
-        "venue": "",
+        "venue": null,
         "city": "Trieste",
         "date": "18/03/2023",
         "coords": [45.6495, 13.7768],
-        "link": "https://www.instagram.com"
+        "link": ""
     },
     {
         "event": "Spazio Anarchico Libera Officina",
@@ -33,7 +33,7 @@
     },
     {
         "event": "Next Core Saturday",
-        "venue": "",
+        "venue": "Next Level Pub",
         "city": "Villa Vicentina (UD)",
         "date": "27/01/2024",
         "coords": [45.8155, 13.3951],
@@ -73,7 +73,7 @@
     },
     {
         "event": "NUHC",
-        "venue": "Spazio Esterno",
+        "venue": null,
         "city": "Cividale del Friuli (UD)",
         "date": "03/05/2025",
         "coords": [46.0934, 13.4312],
@@ -97,7 +97,7 @@
     },
     {
         "event": "Summer Metal Festival",
-        "venue": "",
+        "venue": null,
         "city": "Lonca di Codroipo (UD)",
         "date": "10/08/2025",
         "coords": [45.9691, 13.0039],
@@ -112,7 +112,7 @@
         "link": ""
     },
     {
-        "event": "Next Core EP5",
+        "event": "w/ Mhela",
         "venue": "Punky Reggae Pub",
         "city": "Liedolo (TV)",
         "date": "14/12/2025",
@@ -129,7 +129,7 @@
     },
     {
         "event": "MIDA Music Festival",
-        "venue": "",
+        "venue": null,
         "city": "Abbazia Pisani (PD)",
         "date": "05/06/2026",
         "coords": [45.6022, 11.8542],

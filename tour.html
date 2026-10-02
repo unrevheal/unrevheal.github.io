@@ -241,46 +241,68 @@
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
     <script>
-        // 1. Inizializzazione Mappa
-        const map = L.map('map');
+    // 1. Inizializzazione Mappa (con vista di default per sicurezza)
+    const map = L.map('map').setView([45.8, 13.0], 8);
 
-        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-            maxZoom: 16
-        }).addTo(map);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+        maxZoom: 16
+    }).addTo(map);
 
-        // 2. Gruppo Cluster per l'effetto Spiderfy / Raggiera
-        const markersCluster = L.markerClusterGroup({
-            spiderfyOnMaxZoom: true,
-            showCoverageOnHover: false,
-            zoomToBoundsOnClick: true,
-            maxClusterRadius: 1,
-            spiderfyDistanceMultiplier: 1.5
-        });
+    // 2. Gruppo Cluster per l'effetto Spiderfy / Raggiera
+    const markersCluster = L.markerClusterGroup({
+        spiderfyOnMaxZoom: true,
+        showCoverageOnHover: false,
+        zoomToBoundsOnClick: true,
+        maxClusterRadius: 1,
+        spiderfyDistanceMultiplier: 1.5
+    });
 
-        // 3. Caricamento asincrono dei dati da gigs.json
-        fetch('gigs.json?v=' + Date.now())
-            .then(response => response.json())
-            .then(pastGigs => {
-                pastGigs.forEach(gig => {
-                    let popupText = `
-                        <div class="popup-event">${gig.event}</div>
-                        <div class="popup-venue-city">${gig.venue} - ${gig.city}</div>
-                        <div class="popup-date">Date: ${gig.date}</div>
+    // 3. Caricamento asincrono dei dati da gigs.json (con bypass della cache)
+    fetch('gigs.json?v=' + Date.now())
+        .then(response => response.json())
+        .then(pastGigs => {
+            const bounds = [];
+
+            pastGigs.forEach(gig => {
+                // Gestione pulita del trattino: se la venue c'è la mostra, altrimenti mette solo la città
+                const venueText = gig.venue ? `${gig.venue} - ` : '';
+                const locationText = `${venueText}${gig.city}`;
+
+                let popupText = `
+                    <div class="popup-event">${gig.event}</div>
+                    <div class="popup-venue-city">${locationText}</div>
+                    <div class="popup-date">Date: ${gig.date}</div>
+                `;
+
+                // Mostra il pulsante solo se il campo link non è vuoto
+                if (gig.link && gig.link.trim() !== "") {
+                    popupText += `
+                        <div class="popup-link">
+                            <a href="${gig.link}" target="_blank" class="btn" style="padding: 3px 10px; font-size: 0.8rem;">Event Link</a>
+                        </div>
                     `;
+                }
 
-                    // Mostra il pulsante solo se il campo link non è vuoto
-                    if (gig.link && gig.link.trim() !== "") {
-                        popupText += `
-                            <div class="popup-link">
-                                <a href="${gig.link}" target="_blank" class="btn" style="padding: 3px 10px; font-size: 0.8rem;">Event Link</a>
-                            </div>
-                        `;
-                    }
-
+                if (gig.coords) {
                     const marker = L.marker(gig.coords).bindPopup(popupText);
                     markersCluster.addLayer(marker);
-                });
+                    bounds.push(gig.coords);
+                }
+            });
+
+            // Aggiunge i cluster alla mappa e adatta lo zoom
+            map.addLayer(markersCluster);
+
+            if (bounds.length > 0) {
+                map.fitBounds(bounds);
+            }
+
+            // Forza il ricalcolo delle dimensioni per evitare schermate grigie
+            setTimeout(() => map.invalidateSize(), 200);
+        })
+        .catch(err => console.error("Errore nel caricamento dei dati:", err));
+</script>
 
                 map.addLayer(markersCluster);
 
